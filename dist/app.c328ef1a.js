@@ -119,14 +119,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"app.js":[function(require,module,exports) {
 var ajax = new XMLHttpRequest();
+var NEWS_URL = 'https://api.hnpwa.com/v0/news/1.json';
 
 // ajax 통신
-ajax.open('GET', 'https://api.hnpwa.com/v0/news/1.json', false);
+ajax.open('GET', NEWS_URL, false);
 ajax.send();
 
 // 데이터 파싱
 var newsFeed = JSON.parse(ajax.response);
-document.getElementById('root').innerHTML = "\n    <ul>\n    <li>".concat(newsFeed[0].title, "</li>\n    <li>").concat(newsFeed[1].title, "</li>\n    <li>").concat(newsFeed[2].title, "</li>\n    </ul>\n");
+var ul = document.createElement('ul');
+for (var i = 0; i < 10; i++) {
+  var li = document.createElement('li');
+  li.innerHTML = newsFeed[i].title;
+  ul.appendChild(li);
+}
+document.getElementById('root').appendChild(ul);
 },{}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -152,7 +159,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55696" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
