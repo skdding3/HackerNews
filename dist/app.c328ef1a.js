@@ -130,7 +130,10 @@ var newsFeed = JSON.parse(ajax.response);
 var ul = document.createElement('ul');
 for (var i = 0; i < 10; i++) {
   var li = document.createElement('li');
-  li.innerHTML = newsFeed[i].title;
+  var a = document.createElement('a');
+  a.href = 'a';
+  li.innerHTML = "".concat(newsFeed[i].title, " (").concat(newsFeed[i].comments_count, ")");
+  li.appendChild(a);
   ul.appendChild(li);
 }
 document.getElementById('root').appendChild(ul);
