@@ -120,6 +120,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"app.js":[function(require,module,exports) {
 var ajax = new XMLHttpRequest();
 var NEWS_URL = 'https://api.hnpwa.com/v0/news/1.json';
+var CONTENT_URL = 'https://api/hnpwa.com/v0/item/@id.json';
 
 // ajax 통신
 ajax.open('GET', NEWS_URL, false);
@@ -128,11 +129,15 @@ ajax.send();
 // 데이터 파싱
 var newsFeed = JSON.parse(ajax.response);
 var ul = document.createElement('ul');
+window.addEventListener('hashchange', function () {
+  console.log(location.hash); // # blarblar
+  ajax.open('GET', CONTENT_URL, false);
+});
 for (var i = 0; i < 10; i++) {
   var li = document.createElement('li');
   var a = document.createElement('a');
-  a.href = 'a';
-  li.innerHTML = "".concat(newsFeed[i].title, " (").concat(newsFeed[i].comments_count, ")");
+  a.href = "#".concat(newsFeed[i].id);
+  a.innerHTML = "".concat(newsFeed[i].title, " (").concat(newsFeed[i].comments_count, ")");
   li.appendChild(a);
   ul.appendChild(li);
 }
@@ -162,7 +167,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55696" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61460" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
