@@ -1,4 +1,4 @@
-const container = document.getElementById('root')
+const container = document.getElementById('root');
 const ajax = new XMLHttpRequest()
 const content = document.createElement('div');
 const NEWS_URL = 'https://api.hnpwa.com/v0/news/1.json'
@@ -28,14 +28,19 @@ window.addEventListener('hashchange', function () {
 })
 
 for (let i = 0; i < 10; i++) {
+    const div = document.createElement('div')
     const li = document.createElement('li')
     const a = document.createElement('a')
 
-    a.href = `#${newsFeed[i].id}`
-    a.innerHTML = `${newsFeed[i].title} (${newsFeed[i].comments_count})`
+   div.innerHTML = `
+    <li>
+        <a href="#${newsFeed[i].id}">
+            ${newsFeed[i].title} (${newsFeed[i].comments_count})
+        </a>
+    </li>
+    `
 
-    li.appendChild(a)
-    ul.appendChild(li)
+    ul.appendChild(div.firstElementChild)
 }
 
 container.appendChild(ul);
