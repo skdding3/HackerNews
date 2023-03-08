@@ -32,13 +32,8 @@ for (let i = 0; i < 10; i++) {
     const li = document.createElement('li')
     const a = document.createElement('a')
 
-   div.innerHTML = `
-    <li>
-        <a href="#${newsFeed[i].id}">
-            ${newsFeed[i].title} (${newsFeed[i].comments_count})
-        </a>
-    </li>
-    `
+    a.href = `#${newsFeed[i].id}`
+    a.innerHTML = `#${newsFeed[i].title} (${newsFeed[i].comments_count})`
 
     ul.appendChild(div.firstElementChild)
 }

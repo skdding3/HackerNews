@@ -143,12 +143,12 @@ window.addEventListener('hashchange', function () {
 });
 
 for (var i = 0; i < 10; i++) {
+  var div = document.createElement('div');
   var li = document.createElement('li');
   var a = document.createElement('a');
   a.href = "#".concat(newsFeed[i].id);
-  a.innerHTML = "".concat(newsFeed[i].title, " (").concat(newsFeed[i].comments_count, ")");
-  li.appendChild(a);
-  ul.appendChild(li);
+  a.innerHTML = "#".concat(newsFeed[i].title, " (").concat(newsFeed[i].comments_count, ")");
+  ul.appendChild(div.firstElementChild);
 }
 container.appendChild(ul);
 container.appendChild(content);
@@ -177,7 +177,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61460" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62040" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
