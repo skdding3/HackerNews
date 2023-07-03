@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "parcel": "^2.8.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
   }
 }
