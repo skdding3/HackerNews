@@ -44,6 +44,14 @@ function makeFeeds(feeds) {
     return feeds;
 }
 
+function updateView(html) {
+    if (container != null) {
+        container.innerHTML = template;
+    } else {
+        console.error('최상위 컨테이너가 없어 UI가 진행하지 못합니다.')
+    }
+}
+
 function newsFeed() {
     let newsFeed: NewsFeed[] = store.feeds;
     const newsList = [];
@@ -104,7 +112,8 @@ function newsFeed() {
     template = template.replace('{{__prev_page__}}', store.currentPage > 1 ? store.currentPage - 1 : 1);
     template = template.replace('{{__next_page__}}', store.currentPage + 1);
 
-    container.innerHTML = template;
+
+    updateView(template)
 }
 
 
@@ -175,7 +184,8 @@ function newsDetail() {
         return commentString.join('');
     }
 
-    container.innerHTML = template.replace('{{__comments__}}', makeComment(newsContent.comments));
+    updateView(template)
+
 
     // title.innerHTML = newsContent.title;
 
