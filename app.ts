@@ -5,6 +5,14 @@ type Store = {
     feeds: NewsFeed[];
 }
 
+type News = {
+    id: number;
+    time_age: number;
+    title: string;
+    url: string;
+    
+}
+
 type NewsFeed = {
     id: number;
     comment_count: number;
@@ -16,7 +24,7 @@ type NewsFeed = {
     read?: boolean; // ? is Optional
 }
 
-type newsDetail = {
+type NewsDetail = {
     id: number;
     time_ago: string;
     title: string;
@@ -24,6 +32,15 @@ type newsDetail = {
     user: string;
     content: string;
     comments: [];
+}
+
+type NewsComment = {
+    id: number;
+    user: string;
+    time_ago: string;
+    content: string;
+    comments: [];
+    level: number;
 }
 
 const container: HTMLElement | null = document.getElementById('root')
