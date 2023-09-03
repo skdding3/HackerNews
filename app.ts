@@ -10,36 +10,22 @@ type News = {
     time_age: number;
     title: string;
     url: string;
-    
+    user: string;
+    content: string;
 }
 
-type NewsFeed = {
-    id: number;
-    comment_count: number;
-    url: string;
-    user: string;
-    time_age: string;
+type NewsFeed = News & {
+    comments_count : number;
     points: number;
-    title: string;
-    read?: boolean; // ? is Optional
+    read? : boolean;
 }
 
-type NewsDetail = {
-    id: number;
-    time_ago: string;
-    title: string;
-    url: string;
-    user: string;
-    content: string;
-    comments: [];
+type NewsDetail = News & {
+    comments: NewsComment[]
 }
 
-type NewsComment = {
-    id: number;
-    user: string;
-    time_ago: string;
-    content: string;
-    comments: [];
+type NewsComment = News & {
+    comments: NewsComment[];
     level: number;
 }
 
@@ -56,7 +42,7 @@ const store: Store = {
 
 };
 
-function getData(url: string) {
+function getData(url: string): NewsFeed[] | NewsDetail {
     ajax.open('GET', url, false)
     ajax.send()
 
